@@ -1,0 +1,7 @@
+services:
+  saburati-backend:
+    image: ECR_URL/REPO:TAG
+    env_file:
+      - .env
+    ports:
+      - 4000:4000

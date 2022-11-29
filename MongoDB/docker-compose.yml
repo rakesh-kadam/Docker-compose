@@ -1,0 +1,29 @@
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:5.0
+    volumes:
+      - ~/mongo:/data/db
+      - ./mongod.conf:/etc/mongo/mongod.conf
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=username
+      - MONGO_INITDB_ROOT_PASSWORD=6upM3pY9cBz9
+      - MONGO_INITDB_DATABASE=admin
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=username
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=6upM3pY9cBz9
+      - ME_CONFIG_BASICAUTH_USERNAME=mongo
+      - ME_CONFIG_BASICAUTH_PASSWORD=m8VxARV3u34M
+    ports:
+      - "8888:8081"
+    depends_on:
+      - "mongodb"

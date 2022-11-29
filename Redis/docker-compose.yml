@@ -1,0 +1,9 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - /home/ubuntu/redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6397:6397
